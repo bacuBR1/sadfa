@@ -1,0 +1,20 @@
+<h1>Lista de Artistas</h1>
+
+<p>
+  <a href="/">Início</a> |
+  <a href="/artistas/cadastrar">Cadastrar artista</a>
+</p>
+
+{{#if artistas.length}}
+  <ul>
+    {{#each artistas}}
+      <li>
+        {{this.nome}}
+        {{#if this.nomeArtistico}} ({{this.nomeArtistico}}){{/if}}
+        - <a href="/artistas/{{this.id}}">Detalhar</a>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Nenhum artista cadastrado.</p>
+{{/if}}

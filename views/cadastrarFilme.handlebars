@@ -16,6 +16,29 @@
 
   <br>
 
+  <div>
+    <label for="diretorId">Diretor:</label>
+    <select id="diretorId" name="diretorId">
+      <option value="">Sem diretor</option>
+      {{#each diretores}}
+        <option value="{{this.id}}">{{this.nome}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <br>
+
+  <div>
+    <label for="artistas">Artistas:</label>
+    <select id="artistas" name="artistas" multiple>
+      {{#each artistas}}
+        <option value="{{this.id}}">{{this.nome}}</option>
+      {{/each}}
+    </select>
+  </div>
+
+  <br>
+
   <button type="submit">
     Cadastrar
   </button>

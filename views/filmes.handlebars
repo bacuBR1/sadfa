@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-
 <h1>Lista de Filmes</h1>
 
 <a href="/filmes/cadastrar">
@@ -15,10 +13,10 @@
     <li>
       {{this.nome}} - {{this.ano}} 
 
-      <a href="/filmes/{{this.id}}/editar"><i class="fa-solid fa-pen-to-square"></i></a>
+      <a href="/filmes/{{this.id}}/editar">Editar</a>
       
       <form action="/filmes/{{this.id}}?_method=DELETE" method="POST" style="display: inline;">
-        <button type="submit"><i class="fa-solid fa-trash-can"></i></button>
+        <button type="submit">Excluir</button>
       </form>
     </li>
 

@@ -1,0 +1,20 @@
+<h1>Lista de Diretores</h1>
+
+<p>
+  <a href="/">Início</a> |
+  <a href="/diretores/cadastrar">Cadastrar diretor</a>
+</p>
+
+{{#if diretores.length}}
+  <ul>
+    {{#each diretores}}
+      <li>
+        {{this.nome}}
+        {{#if this.nacionalidade}} - {{this.nacionalidade}}{{/if}}
+        - <a href="/diretores/{{this.id}}">Detalhar</a>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Nenhum diretor cadastrado.</p>
+{{/if}}

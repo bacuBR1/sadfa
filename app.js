@@ -6,6 +6,7 @@ const methodOverride = require('method-override');
 const Diretor = require('./models/Diretor');
 const Artista = require('./models/Artista');
 const FichaTecnica = require('./models/FichaTecnica');
+require('./models/relacionamentosModels');
 
 const app = express();
 
@@ -15,8 +16,8 @@ app.use(methodOverride('_method'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Configurando Handlebars
-app.engine('handlebars', exphbs.engine({defaultLayout: false}));
+// Configurando Handlebars com layout compartilhado
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 
 app.set('view engine', 'handlebars');
 
@@ -36,21 +37,29 @@ app.get('/filmes', async (req, res) => {
 });
 
 // Rota GET - Formulário de cadastro
-app.get(
-  '/filmes/cadastrar', 
-  (req, res) => res.render('cadastrarFilme')
-);
+app.get('/filmes/cadastrar', async (req, res) => {
+  const diretores = await Diretor.findAll({ raw: true });
+  const artistas = await Artista.findAll({ raw: true });
+  res.render('cadastrarFilme', { diretores, artistas });
+});
 
 // Rota POST - Cadastrar filme
 app.post('/filmes', async (req, res) => {
 
   const nome = req.body.nome;
   const ano = req.body.ano;
+  const diretorId = req.body.diretorId || null;
+  const artistaIds = req.body.artistas
+    ? (Array.isArray(req.body.artistas) ? req.body.artistas : [req.body.artistas])
+    : [];
 
-  await Filme.create({
+  const filme = await Filme.create({
     nome: nome, 
-    ano: ano
+    ano: ano,
+    diretorId: diretorId
   });
+
+  if (artistaIds.length) await filme.setArtistas(artistaIds);
 
   res.redirect('/filmes');
 });
@@ -91,25 +100,102 @@ app.delete(
   }
 );
 
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
-//------------------------------------------------------------------------------
+// CRUD básico de artistas
+app.get('/artistas', async (req, res) => {
+  const artistas = await Artista.findAll({ raw: true });
+  res.render('artistas', { artistas });
+});
 
-// 1:1 - Filme e FichaTecnica
-Filme.hasOne(FichaTecnica, { foreignKey: 'filmeId', as: 'fichaTecnica' });
-FichaTecnica.belongsTo(Filme, { foreignKey: 'filmeId', as: 'filme' });
+app.get('/artistas/cadastrar', (req, res) => {
+  res.render('cadastrarArtista');
+});
 
-// 1:N - Diretor e Filme
-Diretor.hasMany(Filme, { foreignKey: 'diretorId', as: 'filmes' });
-Filme.belongsTo(Diretor, { foreignKey: 'diretorId', as: 'diretor' });
+app.post('/artistas', async (req, res) => {
+  await Artista.create({
+    nome: req.body.nome,
+    anoNascimento: req.body.anoNascimento || null,
+    emAtividade: req.body.emAtividade === 'true',
+    foto: req.body.foto || null,
+    nomeArtistico: req.body.nomeArtistico || null
+  });
 
-// N:N - Filme e Artista
-Artista.belongsToMany(Filme, { through: 'FilmeArtista', foreignKey: 'artistaId', as: 'filmes' });
-Filme.belongsToMany(Artista, { through: 'FilmeArtista', foreignKey: 'filmeId', as: 'artistas' });
+  res.redirect('/artistas');
+});
 
+app.get('/artistas/:id', async (req, res) => {
+  const artista = await Artista.findByPk(req.params.id, {
+    include: [{ model: Filme, as: 'filmes' }]
+  });
 
+  if (!artista) return res.status(404).send('Artista não encontrado.');
+  res.render('detalharArtista', { artista: artista.toJSON() });
+});
 
+// CRUD básico de diretores
+app.get('/diretores', async (req, res) => {
+  const diretores = await Diretor.findAll({ raw: true });
+  res.render('diretores', { diretores });
+});
 
+app.get('/diretores/cadastrar', (req, res) => {
+  res.render('cadastrarDiretor');
+});
+
+app.post('/diretores', async (req, res) => {
+  await Diretor.create({
+    nome: req.body.nome,
+    anoNascimento: req.body.anoNascimento || null,
+    nacionalidade: req.body.nacionalidade || null
+  });
+
+  res.redirect('/diretores');
+});
+
+app.get('/diretores/:id', async (req, res) => {
+  const diretor = await Diretor.findByPk(req.params.id, {
+    include: [{ model: Filme, as: 'filmes' }]
+  });
+
+  if (!diretor) return res.status(404).send('Diretor não encontrado.');
+  res.render('detalharDiretor', { diretor: diretor.toJSON() });
+});
+
+// CRUD básico de fichas técnicas
+app.get('/fichas-tecnicas', async (req, res) => {
+  const fichasTecnicas = await FichaTecnica.findAll({
+    include: [{ model: Filme, as: 'filme' }]
+  });
+  res.render('fichasTecnicas', {
+    fichasTecnicas: fichasTecnicas.map((ficha) => ficha.toJSON())
+  });
+});
+
+app.get('/fichas-tecnicas/cadastrar', async (req, res) => {
+  const filmes = await Filme.findAll({ raw: true });
+  res.render('cadastrarFichaTecnicaGeral', { filmes });
+});
+
+app.post('/fichas-tecnicas', async (req, res) => {
+  const filme = await Filme.findByPk(req.body.filmeId);
+  if (!filme) return res.status(400).send('Selecione um filme válido.');
+
+  await filme.createFichaTecnica({
+    duracaoMinutos: req.body.duracaoMinutos || null,
+    orcamento: req.body.orcamento || null,
+    bilheteria: req.body.bilheteria || null
+  });
+
+  res.redirect('/fichas-tecnicas');
+});
+
+app.get('/fichas-tecnicas/:id', async (req, res) => {
+  const fichaTecnica = await FichaTecnica.findByPk(req.params.id, {
+    include: [{ model: Filme, as: 'filme' }]
+  });
+
+  if (!fichaTecnica) return res.status(404).send('Ficha técnica não encontrada.');
+  res.render('detalharFichaTecnica', { fichaTecnica: fichaTecnica.toJSON() });
+});
 
 app.get('/filmes/:id/ficha-tecnica/cadastrar', async (req, res) => {
   const id = req.params.id;

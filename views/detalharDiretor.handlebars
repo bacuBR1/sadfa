@@ -1,0 +1,23 @@
+<h1>Detalhes do Diretor</h1>
+
+<p><a href="/diretores">Voltar para diretores</a></p>
+
+<dl>
+  <dt>Nome</dt>
+  <dd>{{diretor.nome}}</dd>
+  <dt>Ano de nascimento</dt>
+  <dd>{{#if diretor.anoNascimento}}{{diretor.anoNascimento}}{{else}}Não informado{{/if}}</dd>
+  <dt>Nacionalidade</dt>
+  <dd>{{#if diretor.nacionalidade}}{{diretor.nacionalidade}}{{else}}Não informada{{/if}}</dd>
+</dl>
+
+<h2>Filmes</h2>
+{{#if diretor.filmes.length}}
+  <ul>
+    {{#each diretor.filmes}}
+      <li><a href="/filmes/{{this.id}}">{{this.nome}} ({{this.ano}})</a></li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Este diretor ainda não está associado a filmes.</p>
+{{/if}}

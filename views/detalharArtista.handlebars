@@ -1,0 +1,27 @@
+<h1>Detalhes do Artista</h1>
+
+<p><a href="/artistas">Voltar para artistas</a></p>
+
+<dl>
+  <dt>Nome</dt>
+  <dd>{{artista.nome}}</dd>
+  <dt>Nome artístico</dt>
+  <dd>{{#if artista.nomeArtistico}}{{artista.nomeArtistico}}{{else}}Não informado{{/if}}</dd>
+  <dt>Ano de nascimento</dt>
+  <dd>{{#if artista.anoNascimento}}{{artista.anoNascimento}}{{else}}Não informado{{/if}}</dd>
+  <dt>Em atividade</dt>
+  <dd>{{#if artista.emAtividade}}Sim{{else}}Não{{/if}}</dd>
+  <dt>Foto</dt>
+  <dd>{{#if artista.foto}}<a href="{{artista.foto}}">Ver foto</a>{{else}}Não informada{{/if}}</dd>
+</dl>
+
+<h2>Filmes</h2>
+{{#if artista.filmes.length}}
+  <ul>
+    {{#each artista.filmes}}
+      <li><a href="/filmes/{{this.id}}">{{this.nome}} ({{this.ano}})</a></li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Este artista ainda não está associado a filmes.</p>
+{{/if}}

@@ -1,0 +1,36 @@
+<h1>Cadastrar Ficha Técnica</h1>
+
+<p><a href="/fichas-tecnicas">Voltar para fichas técnicas</a></p>
+
+{{#if filmes.length}}
+  <form action="/fichas-tecnicas" method="POST">
+    <div>
+      <label for="filmeId">Filme:</label>
+      <select id="filmeId" name="filmeId" required>
+        {{#each filmes}}
+          <option value="{{this.id}}">{{this.nome}} ({{this.ano}})</option>
+        {{/each}}
+      </select>
+    </div>
+    <br>
+    <div>
+      <label for="duracaoMinutos">Duração (minutos):</label>
+      <input id="duracaoMinutos" type="number" name="duracaoMinutos" min="1">
+    </div>
+    <br>
+    <div>
+      <label for="orcamento">Orçamento:</label>
+      <input id="orcamento" type="number" name="orcamento" min="0" step="0.01">
+    </div>
+    <br>
+    <div>
+      <label for="bilheteria">Bilheteria:</label>
+      <input id="bilheteria" type="number" name="bilheteria" min="0" step="0.01">
+    </div>
+    <br>
+    <button type="submit">Cadastrar</button>
+  </form>
+{{else}}
+  <p>Cadastre um filme antes de criar uma ficha técnica.</p>
+  <a href="/filmes/cadastrar">Cadastrar filme</a>
+{{/if}}

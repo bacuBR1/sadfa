@@ -1,0 +1,19 @@
+<h1>Lista de Fichas Técnicas</h1>
+
+<p>
+  <a href="/">Início</a> |
+  <a href="/fichas-tecnicas/cadastrar">Cadastrar ficha técnica</a>
+</p>
+
+{{#if fichasTecnicas.length}}
+  <ul>
+    {{#each fichasTecnicas}}
+      <li>
+        {{#if this.filme}}{{this.filme.nome}}{{else}}Filme não informado{{/if}}
+        - <a href="/fichas-tecnicas/{{this.id}}">Detalhar</a>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>Nenhuma ficha técnica cadastrada.</p>
+{{/if}}

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{#if titulo}}{{titulo}} | {{/if}}Sistema de Filmes</title>
+</head>
+<body>
+  <header>
+    <a href="/">Filmes</a>
+    <nav aria-label="Navegação principal">
+      <ul>
+        <li><a href="/filmes">Filmes</a></li>
+        <li><a href="/artistas">Artistas</a></li>
+        <li><a href="/diretores">Diretores</a></li>
+        <li><a href="/fichas-tecnicas">Fichas Técnicas</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {{{body}}}
+  </main>
+</body>
+</html>
