@@ -1,30 +1,107 @@
-<h1>{{filme.nome}} ({{filme.ano}})</h1>
+<div class="container">
 
-<h2>Diretor</h2>
-{{#if filme.diretor}}
-  <a href="/diretores/{{filme.diretor.id}}">{{filme.diretor.nome}}</a>
-{{else}}
-  <p>Nenhum diretor associado.</p>
-{{/if}}
+  <h1 class="center-align">
+    {{filme.nome}} ({{filme.ano}})
+  </h1>
 
-<h2>Elenco</h2>
-{{#if filme.artistas.length}}
-  <ul>
-    {{#each filme.artistas}}
-      <li><a href="/artistas/{{this.id}}">{{this.nome}}</a></li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>Nenhum artista associado.</p>
-{{/if}}
+  <div class="center-align">
+    <a href="/filmes" class="btn grey">
+      Voltar para filmes
+    </a>
+  </div>
 
-<h2>Ficha Técnica</h2>
-{{#if filme.fichaTecnica}}
-  <ul>
-    <li>Duração: {{filme.fichaTecnica.duracaoMinutos}} minutos</li>
-    <li>Orçamento: {{filme.fichaTecnica.orcamento}}</li>
-    <li>Bilheteria: {{filme.fichaTecnica.bilheteria}}</li>
-  </ul>
-{{else}}
-  <a href="/filmes/{{filme.id}}/ficha-tecnica/cadastrar">Cadastrar ficha técnica</a>
-{{/if}}
+  <hr>
+
+  <!-- Diretor -->
+  <div class="card">
+    <div class="card-content">
+
+      <span class="card-title">Diretor</span>
+
+      {{#if filme.diretor}}
+
+        <a href="/diretores/{{filme.diretor.id}}">
+          {{filme.diretor.nome}}
+        </a>
+
+      {{else}}
+
+        <p>Nenhum diretor associado.</p>
+
+      {{/if}}
+
+    </div>
+  </div>
+
+
+  <!-- Elenco -->
+  <div class="card">
+    <div class="card-content">
+
+      <span class="card-title">Elenco</span>
+
+      {{#if filme.artistas.length}}
+
+        <div class="collection">
+
+          {{#each filme.artistas}}
+
+            <a
+              href="/artistas/{{this.id}}"
+              class="collection-item"
+            >
+              {{this.nome}}
+            </a>
+
+          {{/each}}
+
+        </div>
+
+      {{else}}
+
+        <p>Nenhum artista associado.</p>
+
+      {{/if}}
+
+    </div>
+  </div>
+
+
+  <!-- Ficha Técnica -->
+  <div class="card">
+    <div class="card-content">
+
+      <span class="card-title">Ficha Técnica</span>
+
+      {{#if filme.fichaTecnica}}
+
+        <p>
+          <strong>Duração:</strong>
+          {{filme.fichaTecnica.duracaoMinutos}} minutos
+        </p>
+
+        <p>
+          <strong>Orçamento:</strong>
+          {{filme.fichaTecnica.orcamento}}
+        </p>
+
+        <p>
+          <strong>Bilheteria:</strong>
+          {{filme.fichaTecnica.bilheteria}}
+        </p>
+
+      {{else}}
+
+        <a
+          href="/filmes/{{filme.id}}/ficha-tecnica/cadastrar"
+          class="btn waves-effect waves-light"
+        >
+          Cadastrar ficha técnica
+        </a>
+
+      {{/if}}
+
+    </div>
+  </div>
+
+</div>

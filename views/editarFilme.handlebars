@@ -1,22 +1,41 @@
-<h1>Editar Filme</h1>
+<div class="container">
 
-<form action="/filmes/{{filme.id}}?_method=PUT" method="POST">
+  <h1 class="center-align">Editar Filme</h1>
 
-  <div>
-    <label>Nome do Filme:</label>
-    <input type="text" name="nome" value="{{filme.nome}}">
+  <div class="center-align">
+    <a href="/filmes" class="btn grey">
+      Voltar para filmes
+    </a>
   </div>
 
-  <br>
+  <hr>
 
-  <div>
-    <label>Ano:</label>
-    <input type="number" name="ano" value="{{filme.ano}}">
-  </div>
+  <form action="/filmes/{{filme.id}}?_method=PUT" method="POST">
 
-  <br>
+    <div class="input-field">
+      <input
+        id="nome"
+        type="text"
+        name="nome"
+        value="{{filme.nome}}"
+      >
+      <label for="nome">Nome do Filme</label>
+    </div>
 
-  <button type="submit">
-    Editar
-  </button>
-</form>
+    <div class="input-field">
+      <input
+        id="ano"
+        type="number"
+        name="ano"
+        value="{{filme.ano}}"
+      >
+      <label for="ano">Ano</label>
+    </div>
+
+    <button type="submit" class="btn waves-effect waves-light">
+      Editar
+    </button>
+
+  </form>
+
+</div>

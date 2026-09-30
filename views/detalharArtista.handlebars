@@ -1,27 +1,93 @@
-<h1>Detalhes do Artista</h1>
+<div class="container">
 
-<p><a href="/artistas">Voltar para artistas</a></p>
+  <h1 class="center-align">Detalhes do Artista</h1>
 
-<dl>
-  <dt>Nome</dt>
-  <dd>{{artista.nome}}</dd>
-  <dt>Nome artístico</dt>
-  <dd>{{#if artista.nomeArtistico}}{{artista.nomeArtistico}}{{else}}Não informado{{/if}}</dd>
-  <dt>Ano de nascimento</dt>
-  <dd>{{#if artista.anoNascimento}}{{artista.anoNascimento}}{{else}}Não informado{{/if}}</dd>
-  <dt>Em atividade</dt>
-  <dd>{{#if artista.emAtividade}}Sim{{else}}Não{{/if}}</dd>
-  <dt>Foto</dt>
-  <dd>{{#if artista.foto}}<a href="{{artista.foto}}">Ver foto</a>{{else}}Não informada{{/if}}</dd>
-</dl>
+  <div class="center-align">
+    <a href="/artistas" class="btn grey">
+      Voltar para artistas
+    </a>
+  </div>
 
-<h2>Filmes</h2>
-{{#if artista.filmes.length}}
-  <ul>
-    {{#each artista.filmes}}
-      <li><a href="/filmes/{{this.id}}">{{this.nome}} ({{this.ano}})</a></li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>Este artista ainda não está associado a filmes.</p>
-{{/if}}
+  <hr>
+
+  <div class="card">
+    <div class="card-content">
+
+      <span class="card-title">
+        Informações do Artista
+      </span>
+
+      <p>
+        <strong>Nome:</strong>
+        {{artista.nome}}
+      </p>
+
+      <p>
+        <strong>Nome artístico:</strong>
+        {{#if artista.nomeArtistico}}
+          {{artista.nomeArtistico}}
+        {{else}}
+          Não informado
+        {{/if}}
+      </p>
+
+      <p>
+        <strong>Ano de nascimento:</strong>
+        {{#if artista.anoNascimento}}
+          {{artista.anoNascimento}}
+        {{else}}
+          Não informado
+        {{/if}}
+      </p>
+
+      <p>
+        <strong>Em atividade:</strong>
+        {{#if artista.emAtividade}}
+          Sim
+        {{else}}
+          Não
+        {{/if}}
+      </p>
+
+      <p>
+        <strong>Foto:</strong>
+        {{#if artista.foto}}
+          <a href="{{artista.foto}}" target="_blank">
+            Ver foto
+          </a>
+        {{else}}
+          Não informada
+        {{/if}}
+      </p>
+
+    </div>
+  </div>
+
+  <h2 class="center-align">Filmes</h2>
+
+  {{#if artista.filmes.length}}
+
+    <div class="collection">
+
+      {{#each artista.filmes}}
+
+        <a
+          href="/filmes/{{this.id}}"
+          class="collection-item"
+        >
+          {{this.nome}} ({{this.ano}})
+        </a>
+
+      {{/each}}
+
+    </div>
+
+  {{else}}
+
+    <div class="card-panel yellow lighten-4 center-align">
+      Este artista ainda não está associado a filmes.
+    </div>
+
+  {{/if}}
+
+</div>

@@ -1,25 +1,63 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8 ">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0  ">
   <title>{{#if titulo}}{{titulo}} | {{/if}}Sistema de Filmes</title>
+  <head>
+    <meta charset="UTF-8">
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+    >
+
+    <title>Meu Projeto</title>
+</head>
 </head>
 <body>
-  <header>
-    <a href="/">Filmes</a>
-    <nav aria-label="Navegação principal">
-      <ul>
-        <li><a href="/filmes">Filmes</a></li>
-        <li><a href="/artistas">Artistas</a></li>
-        <li><a href="/diretores">Diretores</a></li>
-        <li><a href="/fichas-tecnicas">Fichas Técnicas</a></li>
-      </ul>
-    </nav>
-  </header>
+  <header class="cabecalho">
+  <div class="inicio">
+    <a href="/">Tela inicial</a>
+  </div>
+
+  <nav aria-label="Navegação principal">
+    <ul>
+      <li><a href="/filmes">Filmes</a></li>
+      <li><a href="/artistas">Artistas</a></li>
+      <li><a href="/diretores">Diretores</a></li>
+      <li><a href="/fichas-tecnicas">Fichas Técnicas</a></li>
+    </ul>
+  </nav>
+</header>
 
   <main>
     {{{body}}}
   </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+<style>
+
+
+.cabecalho {
+  background-color: #4caf50;
+}
+
+.cabecalho nav {
+  background-color: #4caf50;
+}
+
+.cabecalho a {
+  color: white;
+}
+
+.cabecalho a:hover {
+  background-color: #388e3c;
+}
+
+
+
+</style>
+
 </body>
 </html>

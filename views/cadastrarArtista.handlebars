@@ -1,35 +1,56 @@
-<h1>Cadastrar Artista</h1>
+<div class="container">
 
-<p><a href="/artistas">Voltar para artistas</a></p>
+  <h1 class="center-align">Cadastrar Artista</h1>
 
-<form action="/artistas" method="POST">
-  <div>
-    <label for="nome">Nome:</label>
-    <input id="nome" type="text" name="nome" required>
+  <div class="center-align">
+    <a href="/artistas" class="btn grey">
+      Voltar para artistas
+    </a>
   </div>
-  <br>
-  <div>
-    <label for="nomeArtistico">Nome artístico:</label>
-    <input id="nomeArtistico" type="text" name="nomeArtistico">
-  </div>
-  <br>
-  <div>
-    <label for="anoNascimento">Ano de nascimento:</label>
-    <input id="anoNascimento" type="number" name="anoNascimento">
-  </div>
-  <br>
-  <div>
-    <label for="emAtividade">Em atividade:</label>
-    <select id="emAtividade" name="emAtividade">
-      <option value="true">Sim</option>
-      <option value="false">Não</option>
-    </select>
-  </div>
-  <br>
-  <div>
-    <label for="foto">URL da foto:</label>
-    <input id="foto" type="url" name="foto">
-  </div>
-  <br>
-  <button type="submit">Cadastrar</button>
-</form>
+
+  <hr>
+
+  <form action="/artistas" method="POST">
+
+    <div class="input-field">
+      <input id="nome" type="text" name="nome" required>
+      <label for="nome">Nome</label>
+    </div>
+
+    <div class="input-field">
+      <input id="nomeArtistico" type="text" name="nomeArtistico">
+      <label for="nomeArtistico">Nome artístico</label>
+    </div>
+
+    <div class="input-field">
+      <input id="anoNascimento" type="number" name="anoNascimento">
+      <label for="anoNascimento">Ano de nascimento</label>
+    </div>
+
+    <div class="input-field">
+      <select id="emAtividade" name="emAtividade">
+        <option value="true">Sim</option>
+        <option value="false">Não</option>
+      </select>
+      <label for="emAtividade">Em atividade</label>
+    </div>
+
+    <div class="input-field">
+      <input id="foto" type="url" name="foto">
+      <label for="foto">URL da foto</label>
+    </div>
+
+    <button type="submit" class="btn waves-effect waves-light">
+      Cadastrar
+    </button>
+
+  </form>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var selects = document.querySelectorAll('select');
+    M.FormSelect.init(selects);
+  });
+</script>

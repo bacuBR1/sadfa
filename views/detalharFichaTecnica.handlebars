@@ -1,20 +1,65 @@
-<h1>Detalhes da Ficha Técnica</h1>
+<div class="container">
 
-<p><a href="/fichas-tecnicas">Voltar para fichas técnicas</a></p>
+  <h1 class="center-align">Detalhes da Ficha Técnica</h1>
 
-<dl>
-  <dt>Filme</dt>
-  <dd>
-    {{#if fichaTecnica.filme}}
-      <a href="/filmes/{{fichaTecnica.filme.id}}">{{fichaTecnica.filme.nome}} ({{fichaTecnica.filme.ano}})</a>
-    {{else}}
-      Não informado
-    {{/if}}
-  </dd>
-  <dt>Duração</dt>
-  <dd>{{#if fichaTecnica.duracaoMinutos}}{{fichaTecnica.duracaoMinutos}} minutos{{else}}Não informada{{/if}}</dd>
-  <dt>Orçamento</dt>
-  <dd>{{#if fichaTecnica.orcamento}}{{fichaTecnica.orcamento}}{{else}}Não informado{{/if}}</dd>
-  <dt>Bilheteria</dt>
-  <dd>{{#if fichaTecnica.bilheteria}}{{fichaTecnica.bilheteria}}{{else}}Não informada{{/if}}</dd>
-</dl>
+  <div class="center-align">
+    <a href="/fichas-tecnicas" class="btn grey">
+      Voltar para fichas técnicas
+    </a>
+  </div>
+
+  <br>
+
+  <div class="card">
+
+    <div class="card-content">
+
+      <span class="card-title">Informações da Ficha Técnica</span>
+
+      <p><strong>Filme:</strong></p>
+
+      <p>
+        {{#if fichaTecnica.filme}}
+          <a href="/filmes/{{fichaTecnica.filme.id}}">
+            {{fichaTecnica.filme.nome}}
+            ({{fichaTecnica.filme.ano}})
+          </a>
+        {{else}}
+          Não informado
+        {{/if}}
+      </p>
+
+      <br>
+
+      <p>
+        <strong>Duração:</strong>
+        {{#if fichaTecnica.duracaoMinutos}}
+          {{fichaTecnica.duracaoMinutos}} minutos
+        {{else}}
+          Não informada
+        {{/if}}
+      </p>
+
+      <p>
+        <strong>Orçamento:</strong>
+        {{#if fichaTecnica.orcamento}}
+          {{fichaTecnica.orcamento}}
+        {{else}}
+          Não informado
+        {{/if}}
+      </p>
+
+      <p>
+        <strong>Bilheteria:</strong>
+        {{#if fichaTecnica.bilheteria}}
+          {{fichaTecnica.bilheteria}}
+        {{else}}
+          Não informada
+        {{/if}}
+      </p>
+
+    </div>
+
+  </div>
+
+</div>

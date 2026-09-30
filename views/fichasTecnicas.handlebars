@@ -1,19 +1,65 @@
-<h1>Lista de Fichas Técnicas</h1>
+<div class="container">
 
-<p>
-  <a href="/">Início</a> |
-  <a href="/fichas-tecnicas/cadastrar">Cadastrar ficha técnica</a>
-</p>
+  <h1 class="center-align">Lista de Fichas Técnicas</h1>
 
-{{#if fichasTecnicas.length}}
-  <ul>
-    {{#each fichasTecnicas}}
-      <li>
-        {{#if this.filme}}{{this.filme.nome}}{{else}}Filme não informado{{/if}}
-        - <a href="/fichas-tecnicas/{{this.id}}">Detalhar</a>
-      </li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>Nenhuma ficha técnica cadastrada.</p>
-{{/if}}
+  <div class="center-align">
+    <a href="/" class="btn grey">
+      Início
+    </a>
+
+    <a href="/fichas-tecnicas/cadastrar" class="btn waves-effect waves-light">
+      Cadastrar ficha técnica
+    </a>
+  </div>
+
+  <br>
+
+  {{#if fichasTecnicas.length}}
+
+
+      {{#each fichasTecnicas}}
+
+        <div class="col s12 m6 l4">
+
+          <div class="card">
+
+            <div class="card-content">
+
+              <span class="card-title">
+                {{#if this.filme}}
+                  {{this.filme.nome}}
+                {{else}}
+                  Filme não informado
+                {{/if}}
+              </span>
+
+              <p>
+                Ficha técnica do filme
+              </p>
+
+            </div>
+
+            <div class="card-action">
+
+              <a href="/fichas-tecnicas/{{this.id}}">
+                Detalhar
+              </a>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      {{/each}}
+
+
+  {{else}}
+
+    <div class="card-panel yellow lighten-4 center-align">
+      Nenhuma ficha técnica cadastrada.
+    </div>
+
+  {{/if}}
+
+</div>

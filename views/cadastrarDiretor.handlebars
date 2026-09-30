@@ -1,22 +1,36 @@
-<h1>Cadastrar Diretor</h1>
+<div class="container">
 
-<p><a href="/diretores">Voltar para diretores</a></p>
+  <h1 class="center-align">Cadastrar Diretor</h1>
 
-<form action="/diretores" method="POST">
-  <div>
-    <label for="nome">Nome:</label>
-    <input id="nome" type="text" name="nome" required>
+  <div class="center-align">
+    <a href="/diretores" class="btn grey">
+      Voltar para diretores
+    </a>
   </div>
-  <br>
-  <div>
-    <label for="anoNascimento">Ano de nascimento:</label>
-    <input id="anoNascimento" type="number" name="anoNascimento">
-  </div>
-  <br>
-  <div>
-    <label for="nacionalidade">Nacionalidade:</label>
-    <input id="nacionalidade" type="text" name="nacionalidade">
-  </div>
-  <br>
-  <button type="submit">Cadastrar</button>
-</form>
+
+  <hr>
+
+  <form action="/diretores" method="POST">
+
+    <div class="input-field">
+      <input id="nome" type="text" name="nome" required>
+      <label for="nome">Nome</label>
+    </div>
+
+    <div class="input-field">
+      <input id="anoNascimento" type="number" name="anoNascimento">
+      <label for="anoNascimento">Ano de nascimento</label>
+    </div>
+
+    <div class="input-field">
+      <input id="nacionalidade" type="text" name="nacionalidade">
+      <label for="nacionalidade">Nacionalidade</label>
+    </div>
+
+    <button type="submit" class="btn waves-effect waves-light">
+      Cadastrar
+    </button>
+
+  </form>
+
+</div>

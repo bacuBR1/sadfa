@@ -1,23 +1,73 @@
-<h1>Detalhes do Diretor</h1>
+<div class="container">
 
-<p><a href="/diretores">Voltar para diretores</a></p>
+  <h1 class="center-align">Detalhes do Diretor</h1>
 
-<dl>
-  <dt>Nome</dt>
-  <dd>{{diretor.nome}}</dd>
-  <dt>Ano de nascimento</dt>
-  <dd>{{#if diretor.anoNascimento}}{{diretor.anoNascimento}}{{else}}Não informado{{/if}}</dd>
-  <dt>Nacionalidade</dt>
-  <dd>{{#if diretor.nacionalidade}}{{diretor.nacionalidade}}{{else}}Não informada{{/if}}</dd>
-</dl>
+  <div class="center-align">
+    <a href="/diretores" class="btn grey">
+      Voltar para diretores
+    </a>
+  </div>
 
-<h2>Filmes</h2>
-{{#if diretor.filmes.length}}
-  <ul>
-    {{#each diretor.filmes}}
-      <li><a href="/filmes/{{this.id}}">{{this.nome}} ({{this.ano}})</a></li>
-    {{/each}}
-  </ul>
-{{else}}
-  <p>Este diretor ainda não está associado a filmes.</p>
-{{/if}}
+  <hr>
+
+  <div class="card">
+    <div class="card-content">
+
+      <span class="card-title">
+        Informações do Diretor
+      </span>
+
+      <p>
+        <strong>Nome:</strong>
+        {{diretor.nome}}
+      </p>
+
+      <p>
+        <strong>Ano de nascimento:</strong>
+        {{#if diretor.anoNascimento}}
+          {{diretor.anoNascimento}}
+        {{else}}
+          Não informado
+        {{/if}}
+      </p>
+
+      <p>
+        <strong>Nacionalidade:</strong>
+        {{#if diretor.nacionalidade}}
+          {{diretor.nacionalidade}}
+        {{else}}
+          Não informada
+        {{/if}}
+      </p>
+
+    </div>
+  </div>
+
+  <h2 class="center-align">Filmes</h2>
+
+  {{#if diretor.filmes.length}}
+
+    <div class="collection">
+
+      {{#each diretor.filmes}}
+
+        <a
+          href="/filmes/{{this.id}}"
+          class="collection-item"
+        >
+          {{this.nome}} ({{this.ano}})
+        </a>
+
+      {{/each}}
+
+    </div>
+
+  {{else}}
+
+    <div class="card-panel yellow lighten-4 center-align">
+      Este diretor ainda não está associado a filmes.
+    </div>
+
+  {{/if}}
+
+</div>

@@ -1,46 +1,56 @@
-<h1>Cadastrar Filme</h1>
+<div class="container">
 
-<form action="/filmes" method="POST">
+  <h1 class="center-align">Cadastrar Filme</h1>
 
-  <div>
-    <label>Nome do Filme:</label>
-    <input type="text" name="nome">
-  </div>
+  <hr>
 
-  <br>
+  <form action="/filmes" method="POST">
 
-  <div>
-    <label>Ano:</label>
-    <input type="number" name="ano">
-  </div>
+    <div class="input-field">
+      <input type="text" name="nome" id="nome">
+      <label for="nome">Nome do Filme</label>
+    </div>
 
-  <br>
+    <div class="input-field">
+      <input type="number" name="ano" id="ano">
+      <label for="ano">Ano</label>
+    </div>
 
-  <div>
-    <label for="diretorId">Diretor:</label>
-    <select id="diretorId" name="diretorId">
-      <option value="">Sem diretor</option>
-      {{#each diretores}}
-        <option value="{{this.id}}">{{this.nome}}</option>
-      {{/each}}
-    </select>
-  </div>
+    <div class="input-field">
+      <select id="diretorId" name="diretorId">
+        <option value="" selected>Sem diretor</option>
 
-  <br>
+        {{#each diretores}}
+          <option value="{{this.id}}">{{this.nome}}</option>
+        {{/each}}
 
-  <div>
-    <label for="artistas">Artistas:</label>
-    <select id="artistas" name="artistas" multiple>
-      {{#each artistas}}
-        <option value="{{this.id}}">{{this.nome}}</option>
-      {{/each}}
-    </select>
-  </div>
+      </select>
+      <label for="diretorId">Diretor</label>
+    </div>
 
-  <br>
+    <div class="input-field">
+      <select id="artistas" name="artistas" multiple>
 
-  <button type="submit">
-    Cadastrar
-  </button>
+        {{#each artistas}}
+          <option value="{{this.id}}">{{this.nome}}</option>
+        {{/each}}
 
-</form>
+      </select>
+
+      <label for="artistas">Artistas</label>
+    </div>
+
+    <button type="submit" class="btn waves-effect waves-light">
+      Cadastrar
+    </button>
+
+  </form>
+
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var selects = document.querySelectorAll('select');
+    M.FormSelect.init(selects);
+  });
+</script>

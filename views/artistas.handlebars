@@ -1,20 +1,63 @@
-<h1>Lista de Artistas</h1>
+<div class="container">
 
-<p>
-  <a href="/">Início</a> |
-  <a href="/artistas/cadastrar">Cadastrar artista</a>
-</p>
+  <h1 class="center-align">Lista de Artistas</h1>
 
-{{#if artistas.length}}
-  <ul>
+  <div class="center-align">
+    <a href="/" class="btn grey">
+      Início
+    </a>
+
+    <a href="/artistas/cadastrar" class="btn waves-effect waves-light">
+      Cadastrar artista
+    </a>
+  </div>
+
+  <br>
+
+  {{#if artistas.length}}
+
+
     {{#each artistas}}
-      <li>
-        {{this.nome}}
-        {{#if this.nomeArtistico}} ({{this.nomeArtistico}}){{/if}}
-        - <a href="/artistas/{{this.id}}">Detalhar</a>
-      </li>
+
+    <div class="col s12 m6 l4">
+
+      <div class="card">
+
+        <div class="card-content">
+
+          <span class="card-title">
+            {{this.nome}}
+          </span>
+
+          {{#if this.nomeArtistico}}
+          <p>
+            Nome artístico: {{this.nomeArtistico}}
+          </p>
+          {{/if}}
+
+        </div>
+
+        <div class="card-action">
+
+          <a href="/artistas/{{this.id}}">
+            Detalhar
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
     {{/each}}
-  </ul>
-{{else}}
-  <p>Nenhum artista cadastrado.</p>
-{{/if}}
+
+
+  {{else}}
+
+  <div class="card-panel yellow lighten-4 center-align">
+    Nenhum artista cadastrado.
+  </div>
+
+  {{/if}}
+
+</div>
